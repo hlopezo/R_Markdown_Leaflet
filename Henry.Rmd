@@ -1,0 +1,53 @@
+---
+title: "R Markdown and Leaflet"
+author: "Henry lopez (hlopezo@uni.pe)"
+date: "10 de agosto de 2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Developing Data products : Week 2 Assignment : R Markdown and Leaflet
+
+This is an assignment to create a web page using R Markdown that features a map created with Leaflet .
+Here I am searchign for Peru's kennedy park location as it is one of the places most visited for the toruist in lima Peru .
+
+```{r }
+# Load library leaflet
+library(leaflet)
+```
+
+```{r }
+# we put the url addresses of the different places in lima into different variables
+# uni <- "<a href= 'http://udep.edu.pe/'>Universidad de piura</a>"
+# market <- "<a href= 'https://gatosparquekennedy.org/tienda/' >mercado de pulgas</a>"
+# park <- "<a href= 'https://es.wikipedia.org/wiki/Parque_Central_de_Miraflores' >John F Kennedy park </a>"
+# smart <- "<a href= 'https://www.smartfit.com.pe/' >smart fit </a>"
+# city <- "<a href= 'https://www.miraflores.gob.pe/' >City hall miraflores </a>"
+
+# create the data frame peru that contents lat and log of places near the park
+Peru <- data.frame(
+      lat=c(-12.120317,-12.121512,-12.122120,-12.124312,-12.121731),
+      lng=c(-77.031131,-77.030094,-77.030746,-77.029804,-77.029324),
+      popup=c("Universidad de piura",
+              "mercado de pulgas",
+             "John F Kennedy park",
+              "smart fit ",
+             "City hall miraflores")
+)
+
+```
+
+
+Now we visualize the map 
+
+```{r}
+Peru %>% 
+  leaflet() %>% 
+  addTiles() %>% 
+  addMarkers()
+
+```
+
